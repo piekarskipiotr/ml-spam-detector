@@ -18,7 +18,6 @@ class FeatureExtractor:
                 else:
                     vocab[word] = 1
 
-        # Select top `max_features` terms by their document frequency
         sorted_vocab = sorted(vocab.items(), key=lambda item: item[1], reverse=True)
         self.vocabulary_ = {term: index for index, (term, _) in enumerate(sorted_vocab[:self.max_features])}
 
@@ -33,7 +32,6 @@ class FeatureExtractor:
                     idf[self.vocabulary_[term]] += 1
                     seen_terms.add(term)
 
-        # Compute IDF, adding 1 inside the log to avoid division by zero; log(N / (df + 1)) + 1
         self.idf_ = np.log(N / (idf + 1)) + 1
 
     def _transform(self, X, fit=False):

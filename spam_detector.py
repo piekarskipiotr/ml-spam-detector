@@ -11,10 +11,9 @@ class NaiveBayes:
         count_sample = X.shape[0]
         separated = [[x for x, t in zip(X, y) if t == c] for c in np.unique(y)]
         self.classes_ = np.unique(y)
-        count_classes = len(self.classes_)
 
         self.class_log_prior_ = np.log(np.array([len(i) for i in separated]) / count_sample)
-        count = np.array([np.array(i).sum(axis=0) for i in separated]) + 1.0  # Laplace smoothing
+        count = np.array([np.array(i).sum(axis=0) for i in separated]) + 1.0
         self.feature_log_prob_ = np.log(count / count.sum(axis=1)[np.newaxis].T)
         return self
 
