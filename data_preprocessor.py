@@ -29,6 +29,7 @@ class DataPreprocessor:
         return text
 
     def preprocess(self):
+        # Przetwarzanie danych: wczytanie, oczyszczenie tekstu i podział na zbiory treningowe i testowe.
         data = self.load_data()
         processed_texts = [self.clean_text(row['text']) for row in data]
         labels = [row['label_num'] for row in data]

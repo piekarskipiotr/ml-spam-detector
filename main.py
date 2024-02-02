@@ -12,6 +12,7 @@ def main():
     features_test = feature_extractor.transform(X_test)
 
     spam_detector = SpamDetector()
+    # Trenowanie detektora spamu na przekształconych danych treningowych.
     spam_detector.fit(features_train, y_train)
     predictions = spam_detector.predict(features_test)
     spam_detector.evaluate(y_test, predictions)
